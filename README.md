@@ -45,3 +45,40 @@ docker-compose -f docker-compose-dev.yml exec web python manage.py print_all
 ```
 
 ### Setting up Production environment
+
+1. Create a local env file `.env.prod` with entries
+```
+FLASK_APP=web/__init__.py
+FLASK_ENV=development
+DATABASE_URL=postgresql://username:password@db:5432/database_name
+DEBUG_MODE=1
+SQL_HOST=db
+SQL_PORT=5432
+DATABASE=postgres
+```
+Specify `username,password` and `database_name` for your PostgresSQL database
+2. Create a local env file `.env.prod.db` with entries
+```commandline
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+```
+3. Build the project
+```commandline
+docker-compose -f docker-compose_prod.yml build
+```
+4. Run the project
+```commandline
+docker-compose -f docker-compose_prod.yml  up -d
+```
+5. Create database
+```commandline
+docker-compose -f docker-compose_prod.yml exec web python manage.py create_db
+```
+6. Seed database with random data
+```commandline
+docker-compose -f docker-compose_prod.yml exec web python manage.py seed_db
+```
+
+Check application. Open in browser http://localhost:1337.
+
