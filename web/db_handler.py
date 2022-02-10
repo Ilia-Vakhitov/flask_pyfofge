@@ -1,6 +1,7 @@
 import random
 from datetime import date, timedelta
 
+from faker import Faker
 from sqlalchemy.sql.expression import func
 
 from web import db
@@ -36,9 +37,10 @@ class Chronicles(db.Model):
 
 
 def fill_out_random_data():
+    fake = Faker()
     for i in range(1, 21):
         hero = Superheroes(
-            name=f"Hero {i}",
+            name=fake.name(),
             power=random.randint(1, 10),
             is_villain=random.choice((True, False))
         )
