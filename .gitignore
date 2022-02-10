@@ -106,7 +106,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env.dev
 .venv
 env/
 venv/
@@ -139,4 +138,3 @@ dmypy.json
 cython_debug/
 /docker-compose.yml
 .idea
-.env.*

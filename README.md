@@ -8,7 +8,7 @@ Requirements Docker, Docker-Compose
 ```commandline
 cp docker-compose_dev_sample.yml docker-compose.yml
 ```
-2. Create a local env file `.env.dev` with entries
+2. Fill out an env file `.env.dev`
 ```
 FLASK_APP=web/__init__.py
 FLASK_ENV=development
@@ -46,7 +46,7 @@ docker-compose -f docker-compose-dev.yml exec web python manage.py print_all
 
 ### Setting up Production environment
 
-1. Create a local env file `.env.prod` with entries
+1. Fill out an env file `.env.prod`
 ```
 FLASK_APP=web/__init__.py
 FLASK_ENV=development
@@ -57,7 +57,7 @@ SQL_PORT=5432
 DATABASE=postgres
 ```
 Specify `username,password` and `database_name` for your PostgresSQL database
-2. Create a local env file `.env.prod.db` with entries
+2. Fill out an env file `.env.prod.db`
 ```commandline
 POSTGRES_DB=
 POSTGRES_USER=
