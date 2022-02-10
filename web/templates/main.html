@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Superheroes</title>
+    <style>
+        table {
+          border: 1px solid #ccc;
+          border-collapse: collapse;
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          table-layout: fixed;
+        }
+
+        table caption {
+          font-size: 1.5em;
+          margin: .5em 0 .75em;
+        }
+
+        table tr {
+          background-color: #f8f8f8;
+          border: 1px solid #ddd;
+          padding: .35em;
+        }
+
+        table th,
+        table td {
+          padding: .625em;
+          text-align: center;
+        }
+
+        table th {
+          font-size: .85em;
+          letter-spacing: .1em;
+          text-transform: uppercase;
+        }
+
+        @media screen and (max-width: 600px) {
+          table {
+            border: 0;
+          }
+
+          table caption {
+            font-size: 1.3em;
+          }
+
+          table thead {
+            border: none;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+          }
+
+          table tr {
+            border-bottom: 3px solid #ddd;
+            display: block;
+            margin-bottom: .625em;
+          }
+
+          table td {
+            border-bottom: 1px solid #ddd;
+            display: block;
+            font-size: .8em;
+            text-align: right;
+          }
+
+          table td::before {
+            /*
+            * aria-label has no advantage, it won't be read inside a table
+            content: attr(aria-label);
+            */
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+
+          table td:last-child {
+            border-bottom: 0;
+          }
+        }
+
+        body {
+          font-family: "Open Sans", sans-serif;
+          line-height: 1.25;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table >
+            <caption>Superheroes</caption>
+            <tr>
+                <th>Hero</th>
+                <th>Power</th>
+                <th>Villian</th>
+                <th>Deceased date</th>
+            </tr>
+            {% for hero in heroes %}
+                <tr>
+                    <td>{{ hero.name }}</td>
+                    <td>{{ hero.power }}</td>
+                    <td>
+                        {% if hero.is_villain %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if hero.deceased_date%}
+                        {{ hero.deceased_date.strftime('%Y-%m-%d') }}
+                        {% else %}
+                        <div>Alive</div>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <table>
+            <caption>Chronicles</caption>
+            <tr>
+                <th>Hero</th>
+                <th>Year</th>
+                <th>Event</th>
+            </tr>
+            {% for entry in chronicles %}
+                <tr>
+                    <td>{{ entry.hero }}</td>
+                    <td>{{ entry.year }}</td>
+                    <td>{{ entry.text }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

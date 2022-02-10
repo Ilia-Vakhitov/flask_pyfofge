@@ -1,0 +1,25 @@
+services:
+  web:
+    build:
+      context: .
+    container_name: web
+    volumes:
+      - .:/app
+    command: "python3 manage.py run -h 0.0.0.0"
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env.dev
+  db:
+    image: postgres:14-alpine
+    container_name: db
+    environment:
+      - POSTGRES_DB=?? # Database name
+      - POSTGRES_USER=?? # Postgres db user
+      - POSTGRES_PASSWORD=?? # Postgres db password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+volumes:
+  postgres_data:
