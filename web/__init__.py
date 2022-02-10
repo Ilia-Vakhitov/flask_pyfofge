@@ -10,4 +10,3 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 
 from web import routes
-

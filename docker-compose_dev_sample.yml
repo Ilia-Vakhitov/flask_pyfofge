@@ -7,7 +7,7 @@ services:
       - .:/app
     command: "python3 manage.py run -h 0.0.0.0"
     ports:
-      - "5000:5000"
+      - 5000:5000
     env_file:
       - .env.dev
   db:

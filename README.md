@@ -1,12 +1,12 @@
 ## Flask application
 
-### Setting up dev environment
+### Setting up Development environment
 
 Requirements Docker, Docker-Compose
 
 1. Make your own local compose file
 ```commandline
-cp docker-compose-dev_.sample.yml docker-compose-dev.yml
+cp docker-compose_dev_sample.yml docker-compose.yml
 ```
 2. Create a local env file `.env.dev` with entries
 ```
@@ -41,5 +41,7 @@ Check application. Open in browser http://localhost:5000.
 
 You can print tables data with command
 ```commandline
-docker-compose exec web python manage.py print_all
+docker-compose -f docker-compose-dev.yml exec web python manage.py print_all
 ```
+
+### Setting up Production environment
